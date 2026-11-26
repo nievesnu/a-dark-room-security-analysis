@@ -8,7 +8,7 @@
 
 ---
 
-## 🇬🇧 Summary
+## **EN** · Summary
 
 *A Dark Room* is a minimalist browser game. After finishing it with a score of 3,990,770, I wanted to understand it from the inside: how it is built, how it manages its state and how far that state can be manipulated from the browser.
 
@@ -34,7 +34,7 @@
 
 ---
 
-## 🇪🇸 Resumen
+## **ES** · Resumen
 
 *A Dark Room* es un juego minimalista de navegador. Tras terminarlo con 3.990.770 puntos, quise entenderlo por dentro: cómo está construido, cómo gestiona su estado y hasta qué punto se puede manipular desde el navegador.
 

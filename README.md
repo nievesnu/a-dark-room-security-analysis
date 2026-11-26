@@ -6,6 +6,8 @@
 
 📄 **Artículo completo (español) · Full write-up (Spanish): [a-dark-room.md](a-dark-room.md)**
 
+[Link to a-dark-room github page](https://github.com/doublespeakgames/adarkroom/tree/main)
+
 ---
 
 ## **ES** · Resumen

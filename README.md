@@ -1,10 +1,36 @@
-# A Dark Room: client-side security analysis of a web game
+# A Dark Room: análisis de seguridad client-side de un juego web · client-side security analysis of a web game
 
 ![Type](https://img.shields.io/badge/type-personal%20project-8957e5)
 ![Topics](https://img.shields.io/badge/topics-reverse%20engineering%20%C2%B7%20client--side%20trust%20%C2%B7%20logic%20abuse-informational)
 ![Language](https://img.shields.io/badge/JavaScript-DevTools%20console-F7DF1E?logo=javascript&logoColor=black)
 
-📄 **Full write-up (Spanish) · Artículo completo (español): [a-dark-room.md](a-dark-room.md)**
+📄 **Artículo completo (español) · Full write-up (Spanish): [a-dark-room.md](a-dark-room.md)**
+
+---
+
+## **ES** · Resumen
+
+*A Dark Room* es un juego minimalista de navegador. Tras terminarlo con 3.990.770 puntos, quise entenderlo por dentro: cómo está construido, cómo gestiona su estado y hasta qué punto se puede manipular desde el navegador.
+
+**Qué hice**
+
+- Leí y mapeé los scripts del juego (`state-manager.js`, `world.js`, `path.js`, `events.js`, `fabricator.js`, `ship.js`, `perks.js`) para reconstruir su arquitectura.
+- Encontré el **State Manager** global (`$SM`) y lo usé desde la consola de DevTools para modificar cualquier valor guardado.
+- Disparé eventos narrativos a mano, eliminé los límites de peso, agua y vida en el mapa, desbloqueé la cadena de perks y automaticé las mejoras de la nave con bucles.
+- Llegué a un estado de cabañas infinitas que rompió la economía del juego: puntuación final **3.263.351.856**, unas **817×** la partida original.
+
+**Conceptos de seguridad que practiqué**
+
+| Concepto | Cómo aparece en el juego |
+|---|---|
+| Confianza en el cliente | Toda la lógica y el estado viven en el navegador |
+| Falta de validación | No se comprueban rangos ni tipos, así que se aceptan estados imposibles |
+| API interna expuesta | Las funciones críticas se pueden llamar desde la consola |
+| Ingeniería inversa ligera | Reconstruir las dependencias a partir de código ajeno |
+| Desincronización DOM / estado | La interfaz lee el DOM, no el estado real |
+| Explotación de la lógica | Saltarse requisitos y generar recursos ilimitados |
+
+**Conclusión:** son los mismos patrones (confiar en el cliente, no validar en el servidor, exponer funciones) que en aplicaciones web reales generan vulnerabilidades.
 
 ---
 
@@ -31,23 +57,6 @@
 | Business-logic abuse | Skipping requirements and generating unlimited resources |
 
 **Takeaway:** the same patterns (trusting the client, no server-side validation, exposed functions) appear in real web applications and lead to real vulnerabilities.
-
----
-
-## **ES** · Resumen
-
-*A Dark Room* es un juego minimalista de navegador. Tras terminarlo con 3.990.770 puntos, quise entenderlo por dentro: cómo está construido, cómo gestiona su estado y hasta qué punto se puede manipular desde el navegador.
-
-**Qué hice**
-
-- Leí y mapeé los scripts del juego para reconstruir su arquitectura.
-- Encontré el **State Manager** global (`$SM`) y lo usé desde la consola de DevTools para modificar cualquier valor.
-- Disparé eventos narrativos a mano, eliminé los límites de peso, agua y vida en el mapa, desbloqueé la cadena de perks y automaticé las mejoras de la nave con bucles.
-- Llegué a un estado de cabañas infinitas que rompió la economía del juego: puntuación final **3.263.351.856**, unas **817×** la partida original.
-
-**Conceptos de seguridad:** confianza en el cliente, ausencia de validación, API interna expuesta, ingeniería inversa ligera, desincronización DOM/estado y explotación de lógica.
-
-**Conclusión:** son los mismos patrones que en aplicaciones web reales generan vulnerabilidades.
 
 ---
 
